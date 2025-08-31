@@ -38,6 +38,10 @@ The latest version of the importer is compatible with:
 
 For older versions of Blender, check the specific release notes on the [releases page](https://github.com/martijnberger/pyslapi/releases).
 
+## Known Issues
+
+The "Instantiation Threshold" setting. The process that creates instances is broken. Setting this number to a high number avoids this bug issue (larger than the number of your most instanced SU component.) I am not really sure what the purpose is for instantiating objects. The importer already creates Blender instances (part01.001, part01.002, etc. All the parts will point to the same mesh.) when instances of SU components are loaded into Blender.
+
 ## Version 0.25 Improvements
 
 This version incorporates significant improvements by [Peter Kirkham](https://pkirkham.github.io/blog/importing-from-sketchup-into-blender/) that address several critical issues with the SketchUp importer:
