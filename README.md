@@ -57,46 +57,41 @@ As noted by Peter Kirkham in his August 2022 update:
 ### Platform Support
 - **Linux Support**: Not available due to limitations in the SketchUp SDK which doesn't provide Linux libraries.
 
-### Import Options
-- **Line-Only Import**: Future feature to import only line geometry without faces.
-
-
 
 ## Build Info
 
-### OSX Build
-1) Install Python3 from Python website (python.org)
+### Windows Build
+1) Install Python3 (version 3.11 must be used) from Python website (python.org)
 2) Install Cython from shell:
    ```
-   pip3 install Cython --install-option="--no-cython-compile"
+   pip3 install Cython
    ```
-   (replace by pip if needed)
+   (replace by "pip" if needed)
 
-3) Download Sketchup SDK https://extensions.sketchup.com/sketchup-sdk
+3) Download Sketchup SDK https://extensions.sketchup.com/sketchup-sdk ( you will need to create dev account)
+
+4) Download the Source for the Importer - uncompress your chosen source archive to the location you want to.
 
 #### BUILD
-1) Copy LayOutAPI.framework and SketchUpAPI.framework from SDK directory to pyslapi
+1) Copy headers and binaries folders from SU SDK directory to the top level folder where you unzipped the importer source
 
-2) Build OSX version
+2) Build Windows version
    ```
    uv venv 
-   python3 setup.py build_ext --inplace
-   ```
-
-3) Run the two last lines of setup script manually:
-   ```
-   install_name_tool -change @rpath/SketchUpAPI.framework/Versions/Current/SketchUpAPI @loader_path/SketchUpAPI.framework/Versions/Current/SketchUpAPI sketchup.cpython-311-darwin.so
-   install_name_tool -change @rpath/SketchUpAPI.framework/Versions/A/SketchUpAPI @loader_path/SketchUpAPI.framework/Versions/A/SketchUpAPI sketchup.cpython-311-darwin.so
-   sudo xattr -r -d com.apple.quarantine SketchUpAPI.framework
+   python setup.py build_ext --inplace
    ```
 
 #### INSTALL
-1) Copy the following files from pyslapi to SketchUp_Importer
-  - LayOutAPI.framework
-  - SketchUpAPI.framework
-  - sketchup.cpython-311-darwin
 
-2) Rename sketchup.cpython-311-darwin.so to sketchup.so
+If you have an older version of the Importer installed in Blender, uninstall it before installing this version.
 
-3) Look the addon in Blender and enable it
+1)  In the default Blender AddOn location create a new folder called SU_Importer2
+
+2)  Copy the following files/folders from the build location to SU_Importer2
+  - SketchUpAPI.dll
+  - SketchUpCommonPreferences.dll
+  - sketchup.cp311-win_amd64.pyd
+  - SKPutil (folder)
+
+3) Open Blender - Edit/Preferences Look for the addon and enable it.
 
