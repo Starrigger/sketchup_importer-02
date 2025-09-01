@@ -95,6 +95,7 @@ If you have an older version of the Importer installed in Blender, uninstall it 
   - SketchUpAPI.dll
   - SketchUpCommonPreferences.dll
   - sketchup.cp311-win_amd64.pyd
+  - __init__.py
   - SKPutil (folder)
 
 3) Open Blender - Edit/Preferences Look for the addon and enable it.
